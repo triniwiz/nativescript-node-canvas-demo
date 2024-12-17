@@ -1,13 +1,10 @@
 import "@nativescript/macos-node-api";
-import utils from "@nativescript/canvas-napi/utils";
 import "@nativescript/foundation/dom/index.js";
 import "./app.ts";
 
 import "@nativescript/canvas-napi";
 
-import {ImageAsset} from "@nativescript/canvas-napi/index.js";
-
-const { requestAnimationFrame, cancelAnimationFrame } = utils;
+import { ImageAsset } from "@nativescript/canvas-napi";
 
 objc.import("AppKit");
 objc.import("OpenGL");
@@ -301,7 +298,7 @@ function flappyBird(canvas) {
       s_numberB.draw(ctx, null, 20, score, width2);
     }
 
-  //  ctx.render();
+    //  ctx.render();
   }
 
   var s_bird,
@@ -413,6 +410,12 @@ function flappyBird(canvas) {
 }
 
 function solarSystem(canvas) {
+  const width = canvas.clientWidth * window.devicePixelRatio;
+  const height = canvas.clientHeight * window.devicePixelRatio;
+
+  canvas.width = width;
+  canvas.height = height;
+
   const ctx = canvas.getContext("2d");
 
   let sun;
@@ -451,7 +454,7 @@ function solarSystem(canvas) {
     LAF = requestAnimationFrame(draw);
   }
 
-  //ctx.scale(scale, scale);
+  ctx.scale(scale, scale);
 
   function draw() {
     ctx.globalCompositeOperation = "destination-over";
@@ -492,7 +495,7 @@ function solarSystem(canvas) {
     //
     ctx.drawImage(sun, 0, 0, 300, 300);
 
-   // ctx.render();
+    // ctx.render();
 
     LAF = requestAnimationFrame(draw);
   }
@@ -607,7 +610,7 @@ function swarm(canvas, width?: number, height?: number) {
       //Finally call the update function
       update();
 
-     // ctx.render();
+      // ctx.render();
     }
 
     // Give every particle some life
@@ -715,8 +718,13 @@ function breathe_demo(canvas) {
   };
 
   function breathe(canvas) {
+    const width = canvas.clientWidth * window.devicePixelRatio;
+    const height = canvas.clientHeight * window.devicePixelRatio;
+
+    canvas.width = width;
+    canvas.height = height;
+
     const context = canvas.getContext("2d");
-    const { width, height } = canvas;
 
     let progress = 0;
 
@@ -785,7 +793,7 @@ function breathe_demo(canvas) {
 
       context.restore();
 
-     // context.render();
+      // context.render();
 
       // Loop the animation
       requestAnimationFrame(tick);
@@ -801,23 +809,6 @@ const windowDoc = document.createElement("window");
 
 windowDoc.style.width = `${NSScreen.mainScreen.frame.size.width * 0.66}`;
 windowDoc.style.height = `${NSScreen.mainScreen.frame.size.height * 0.66}`;
-
-async function webgpuTest() {
-  console.log(navigator.gpu.wgslLanguageFeatures);
-  console.log(navigator.gpu.getPreferredCanvasFormat());
-
-  const adapter = await navigator.gpu.requestAdapter();
-
-  console.log(adapter.features);
-  console.log(adapter.isFallbackAdapter);
-  console.log(adapter.limits);
-
-  const info = await adapter.requestAdapterInfo();
-  console.log(info.architecture);
-  console.log(info.description);
-  console.log(info.device);
-  console.log(info.vendor);
-}
 
 async function webgpuTriangle(canvas) {
   const tri = `@vertex
@@ -926,8 +917,9 @@ const canvas = document.createElement("canvas");
 
 canvas.addEventListener("ready", (event) => {
   console.log("ready");
-  //simplePixi(canvas);
   swarm(canvas);
+  // solarSystem(canvas);
+  //breathe_demo(canvas);
 });
 
 windowDoc.setAttribute(

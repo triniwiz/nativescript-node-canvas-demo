@@ -10,9 +10,9 @@
 	"dependencies": {
 		"teapot": "~1.0.0",
 		"wgpu-matrix": "~3.3.0",
-		"@nativescript/macos-node-api": "0.1.3",
+		"@nativescript/macos-node-api": "0.1.4",
 		"@nativescript/foundation": "0.0.1-alpha.22",
-		"@nativescript/canvas-napi": "0.0.2"
+		"@nativescript/canvas-napi": "0.0.5"
 	},
 	"devDependencies": {
 		"tsx": "^4.19.2",
