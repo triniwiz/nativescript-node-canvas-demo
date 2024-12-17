@@ -3,6 +3,7 @@ import "@nativescript/foundation/dom/index.js";
 import "./app.ts";
 
 import "@nativescript/canvas-napi";
+import damagedHelmet from './three/damaged_helmet';
 
 import { ImageAsset } from "@nativescript/canvas-napi";
 
@@ -917,9 +918,10 @@ const canvas = document.createElement("canvas");
 
 canvas.addEventListener("ready", (event) => {
   console.log("ready");
-  swarm(canvas);
+ // swarm(canvas);
   // solarSystem(canvas);
   //breathe_demo(canvas);
+  damagedHelmet.run(canvas);
 });
 
 windowDoc.setAttribute(
